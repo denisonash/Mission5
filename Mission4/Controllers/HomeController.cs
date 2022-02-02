@@ -11,13 +11,10 @@ namespace Mission4.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
         private NewMovieContext movieContext { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, NewMovieContext newMovie)
+        public HomeController(NewMovieContext newMovie)
         {
-            _logger = logger;
             movieContext = newMovie;
         }
 
@@ -55,10 +52,5 @@ namespace Mission4.Controllers
             
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
