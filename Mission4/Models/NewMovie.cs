@@ -9,19 +9,20 @@ namespace Mission4.Models
         [Required]
         public int MovieID { get; set; }
 
-        [Required]
-        public string Category { get; set; }
+        // Build the foreign key
+        public int CategoryID { get; set; }
+        public Category Category { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a title")]
         public string Title { get; set; }
 
-        [Required]
-        public short Year { get; set; }
+        [Required(ErrorMessage = "Please enter a year")]
+        public int Year { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please enter a director")]
         public string Director { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Please select a rating")]
         public string Rating { get; set; }
 
         public bool Edited { get; set; }

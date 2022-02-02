@@ -8,7 +8,7 @@ using Mission4.Models;
 namespace Mission4.Migrations
 {
     [DbContext(typeof(NewMovieContext))]
-    [Migration("20220126031435_Initial")]
+    [Migration("20220202175522_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -17,15 +17,71 @@ namespace Mission4.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.22");
 
+            modelBuilder.Entity("Mission4.Models.Category", b =>
+                {
+                    b.Property<int>("CategoryID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("CategoryID");
+
+                    b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            CategoryID = 1,
+                            CategoryName = "Action/Adventure"
+                        },
+                        new
+                        {
+                            CategoryID = 2,
+                            CategoryName = "Comedy"
+                        },
+                        new
+                        {
+                            CategoryID = 3,
+                            CategoryName = "Drama"
+                        },
+                        new
+                        {
+                            CategoryID = 4,
+                            CategoryName = "Family"
+                        },
+                        new
+                        {
+                            CategoryID = 5,
+                            CategoryName = "Horror/Suspense"
+                        },
+                        new
+                        {
+                            CategoryID = 6,
+                            CategoryName = "Miscellaneous"
+                        },
+                        new
+                        {
+                            CategoryID = 7,
+                            CategoryName = "Television"
+                        },
+                        new
+                        {
+                            CategoryID = 8,
+                            CategoryName = "VHS"
+                        });
+                });
+
             modelBuilder.Entity("Mission4.Models.NewMovie", b =>
                 {
                     b.Property<int>("MovieID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Category")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryID")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Director")
                         .IsRequired()
@@ -49,10 +105,12 @@ namespace Mission4.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<short>("Year")
+                    b.Property<int>("Year")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("MovieID");
+
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("movies");
 
@@ -60,39 +118,48 @@ namespace Mission4.Migrations
                         new
                         {
                             MovieID = 1,
-                            Category = "Comedy",
+                            CategoryID = 2,
                             Director = "Jon M. Chu",
                             Edited = false,
                             LentTo = "",
                             Notes = "Best movie ever!!",
                             Rating = "PG-13",
                             Title = "Crazy Rich Asians",
-                            Year = (short)2018
+                            Year = 2018
                         },
                         new
                         {
                             MovieID = 2,
-                            Category = "Family",
+                            CategoryID = 4,
                             Director = "Ron Clements",
                             Edited = false,
                             LentTo = "",
                             Notes = "",
                             Rating = "G",
                             Title = "The Princess and the Frog",
-                            Year = (short)2009
+                            Year = 2009
                         },
                         new
                         {
                             MovieID = 3,
-                            Category = "Action/Adventure",
+                            CategoryID = 1,
                             Director = "Jon Watts",
                             Edited = false,
                             LentTo = "",
                             Notes = "",
                             Rating = "PG-13",
                             Title = "Spider-Man: No Way Home",
-                            Year = (short)2021
+                            Year = 2021
                         });
+                });
+
+            modelBuilder.Entity("Mission4.Models.NewMovie", b =>
+                {
+                    b.HasOne("Mission4.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

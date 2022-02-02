@@ -1,19 +1,19 @@
 ﻿<Properties StartupConfiguration="{03B2BF20-CEDA-428F-A9B6-9AAD45FDDCB0}|Default">
   <MonoDevelop.Ide.Workbench>
-    <Files>
-      <File FileName="Mission4/Controllers/HomeController.cs" Line="10" Column="31" />
-    </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Mission4" expanded="True">
             <Node name="Mission4" expanded="True">
-              <Node name="Controllers" expanded="True">
-                <Node name="HomeController.cs" selected="True" />
+              <Node name="Controllers" expanded="True" />
+              <Node name="Models" expanded="True">
+                <Node name="Category.cs" selected="True" />
               </Node>
-              <Node name="Models" expanded="True" />
               <Node name="Properties" expanded="True" />
-              <Node name="Views" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Home" expanded="True" />
+                <Node name="Shared" expanded="True" />
+              </Node>
             </Node>
           </Node>
         </State>
